@@ -1,0 +1,47 @@
+.pricing-padding {
+  padding: 0 4.6rem 0 4.6rem;
+}
+
+.hero-con {
+    margin-top: 9rem;
+    margin-bottom: 10rem;
+}
+
+.pp-h1 {
+    font-size: 1.75rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+}
+
+.pp-h2 {
+    font-size: 1.75rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.pp-para {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-top: 10px;
+    color: #9b9b9b;
+}
+
+.pp-image {
+    width: 73%;
+    margin-bottom: 1rem;
+}
+
+.pp-br-para {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.padding-pp {
+    margin-right: 2rem;
+}
+
+.pp-con-mar {
+    margin-bottom: 4rem;
+}

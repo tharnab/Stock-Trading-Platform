@@ -1,0 +1,62 @@
+.about-padding {
+    padding: 0 10rem 0 10rem;
+}
+
+
+
+.hero-con {
+    margin-top: 10.5rem;
+}
+
+.hero-f-row {
+    padding-bottom: 5.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.hero-s-row {
+    margin-top: 6rem;
+    padding: 0 6rem 0 6rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.hero-a-page {
+    line-height: 2;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.l-p {
+    padding-right: 2rem;
+}
+
+.a-link {
+  color: #387ed1;
+  text-decoration: none;
+}
+
+.a-link:hover {
+  color: #424242;
+  text-decoration: none;
+}
+
+.about-padding-team {
+    padding: 0 7rem 0 7rem;
+}
+
+.creator {
+    border-radius: 100%;
+    width: 79%;
+}
+
+.about-team-con {
+    margin-top: 6.5rem;
+}
+
+.about-s-row {
+    margin-top: 3.7rem;
+    margin-bottom: 7rem;
+}

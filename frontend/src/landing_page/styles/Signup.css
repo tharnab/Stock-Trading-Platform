@@ -1,0 +1,65 @@
+.sing-padding{ 
+    padding: 0 15rem 0 15rem;
+}
+
+.sign-in-padding {
+    padding: 0 10rem 0 10rem;
+}
+
+.sign-con {
+    margin-top: 10rem;
+}
+
+.in-button {
+  border-radius: 3px;
+  width: 23%;
+  margin: 0 auto;
+  background-color: #387ed1;
+  color: white;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0) !important;
+  border-radius: 3px;
+}
+
+.sign-button {
+    width: 23%;
+  background-color: #387ed1;
+  color: white;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0) !important;
+  border-radius: 5px;
+}
+
+.sign-in-cont {
+    margin-top: 7rem;
+    margin-bottom: 7rem;;
+}
+
+.demat {
+    background-color: #fafafb;
+    height: 27rem;
+}
+
+.demat-img {
+    margin-left: 15rem;
+}
+
+.dd {
+    margin: 0 17rem 0 20rem;
+}
+
+.demat-upper {
+    display: inline-block;
+}
+
+.demat-number {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+

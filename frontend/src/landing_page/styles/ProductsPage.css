@@ -1,0 +1,174 @@
+.p-hero {
+  margin-top: 10rem;
+  padding-bottom: 100px;
+}
+
+.products-padding {
+  padding: 0 4.6rem 0 4.6rem;
+}
+
+.p-h1 {
+  font-size: 1.95rem;
+  line-height: 1.25;
+}
+
+.p-b {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5rem;
+}
+
+.p-h {
+  font-size: 1.35rem;
+}
+
+.p2-h {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.products-link {
+  color: #387ed1;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.products-link:hover {
+  color: #424242;
+  text-decoration: none;
+}
+
+/* left-section */
+
+.ls-pn {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+.ls-lc {
+  padding-top: 3.5rem;
+  padding-left: 11rem;
+  padding-right: 4rem;
+}
+
+.ls-pd {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.ls-p {
+  margin-right: 3.5rem;
+}
+
+/* right-section */
+
+.rs-con {
+  margin-top: 4.6rem;
+}
+
+.rs-para {
+  padding-left: 2.5rem;
+  margin-right: 5rem;
+  padding-top: 13rem;
+}
+
+.rs-img {
+  padding-bottom: 5rem;
+}
+
+.rsl-con {
+  margin-top: 12rem;
+  margin-bottom: 5rem;
+}
+
+.rsl-para {
+  padding-left: 2.5rem;
+  margin-right: 5rem;
+  padding-top: 8rem;
+}
+
+.zt-para {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.zt-con {
+  margin-top: 6.5rem;
+}
+
+/* Universe */
+
+.un-con {
+  margin-top: 7.5rem;
+}
+
+.un-head {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-top: 0px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.uni-para {
+  line-height: 18px;
+  display: block;
+  margin-top: 10px;
+
+  color: #9b9b9b;
+
+  font-size: 0.75rem;
+}
+
+.products-padding-uni {
+  padding: 0 6.5rem 0 6.5rem;
+}
+
+.fundhouse {
+  width: 57%;
+  margin-bottom: 0.45rem;
+}
+
+.sensibull {
+  /* padding-top: 0.5rem; */
+  width: 65%;
+  margin-bottom: 1.3rem;
+}
+
+.tijori {
+  width: 48%;
+}
+
+.uni-img {
+  margin-bottom: 0.5rem;
+}
+
+.ditto {
+  width: 43%;
+  margin-bottom: 0.4rem;
+}
+
+.smallcase {
+  width: 60%;
+  margin-bottom: 0.4rem;
+}
+
+.streak {
+  width: 50%;
+  margin-bottom: 0.4rem;
+}
+
+
+.button {
+  border-radius: 3px;
+  width: 18%;
+  margin: 0 auto;
+  background-color: #387ed1;
+  color: white;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0) !important;
+  border-radius: 3px;
+}

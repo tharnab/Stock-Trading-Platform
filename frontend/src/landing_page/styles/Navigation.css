@@ -1,0 +1,183 @@
+/* Navigation.css */
+.account-container {
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  max-width: 40rem;
+  margin-left: 12rem;
+  background: white;
+  border-radius: 10px;
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); */
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.account-header {
+  background: #387ed1;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.account-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.account-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.navigation-menu {
+  padding: 15px;
+}
+
+.menu-section {
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e6eef9;
+  transition: all 0.3s ease;
+}
+
+.menu-section:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-radius: 8px;
+}
+
+.menu-item:hover {
+  background-color: #f5f8ff;
+}
+
+.menu-item.active {
+  background-color: #e6f0ff;
+  border-radius: 8px 8px 0 0;
+}
+
+.item-icon {
+  margin-right:2rem;
+  padding: 0 2rem 0 0.4rem;
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+  border-right: 1px solid #387ed1;
+}
+
+.item-title {
+  flex: 1;
+  font-weight: 500;
+  /* color: #333; */
+  font-size: 15px;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  color: #387ed1;
+  transition: transform 0.7s ease;
+}
+
+.menu-item.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-section {
+  background: #ffffff;
+  /* border-top: 1px solid #e6eef9; */
+  padding-left: 4.2rem;
+  animation: fadeInOut 0.7s ease;
+  margin: 1rem 0 1rem 0;
+}
+
+@keyframes fadeInOut {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-content {
+  color: #44566c;
+}
+
+.dropdown-content ul {
+  /* list-style: none; */
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-content li {
+  padding: 8px 0;
+  font-size: 14px;
+  color: #387ed1;
+}
+
+.dropdown-content li:last-child {
+  border-bottom: none;
+}
+
+.funds-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.funds-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.funds-item .label,
+.funds-item .value,
+.funds-item .number {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-align: center;
+  min-width: 36px;
+}
+
+.funds-item .label {
+  background: #f0f5ff;
+  color: #44566c;
+  font-weight: 600;
+}
+
+.funds-item .value {
+  background: white;
+  color: #5f7a9f;
+  border: 1px solid #e6eef9;
+}
+
+.funds-item .number {
+  background: #e6f0ff;
+  color: #387ed1;
+  font-weight: 600;
+}
+
+.dropdown-content ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.dropdown-content ol li {
+  padding: 8px 0;
+  color: #44566c;
+  font-size: 14px;
+}
+
+.dropdown-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #5f7a9f;
+}

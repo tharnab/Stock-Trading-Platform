@@ -1,0 +1,75 @@
+.support-padding-hero {
+  padding: 0 12rem 0 12rem;
+}
+
+.supp-con {
+    margin-top: 4.5rem;
+    padding-top: 4.5rem;
+    margin-bottom: 3.5rem;
+    padding-bottom: 4rem;
+    background-color: #478adc ;
+}
+
+.white {
+    color: rgb(231, 248, 255);
+}
+
+.sup-button {
+    background-color: whitesmoke;
+    color: #478adc;
+    margin-left: 15rem;
+    width: 8.5rem; 
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.sup-button:hover {
+    background-color: #404040
+    /* color: white; */
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(220, 231, 250);
+    text-decoration: underline;
+}
+
+
+.sp-h2 {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.sp-h3 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.sp-input {
+    margin-left: 0.8rem;
+    border-radius: 9px;
+    border: none;
+    margin-bottom: 1.3rem;
+}
+
+.sp-gap {
+    /* margin-right: 10rem; */
+    padding-right: 7rem;
+}
+
+.sp-secol {
+    padding-left: 4rem;
+    padding-right: 2rem;
+}
+
+.text-end {
+    margin-bottom: 4.5rem;
+}
