@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import GeneralContext from "./GeneralContext"; // ← IMPORT CONTEXT
+import { API_ENDPOINTS } from "../config/api";
+
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -19,7 +21,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3002/myOrders", {
+      const response = await axios.get(API_ENDPOINTS.TRADING.MY_ORDERS, {
         withCredentials: true
       });
       setOrders(response.data);

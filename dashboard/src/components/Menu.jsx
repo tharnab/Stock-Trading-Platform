@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import "./Menu.css"; // Create this CSS file for styling
+import { API_ENDPOINTS } from "../config/api";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
@@ -19,7 +20,7 @@ const Menu = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:3002/logout", {}, { withCredentials: true });
+      await axios.post(API_ENDPOINTS.AUTH.LOGOUT, {}, { withCredentials: true });
       localStorage.removeItem('authToken');
       window.location.href = "/";
     } catch (err) {
@@ -37,7 +38,7 @@ const Menu = () => {
           withCredentials: true 
         } : { withCredentials: true };
 
-        const response = await axios.get("http://localhost:3002/user", config);
+        const response = await axios.get(API_ENDPOINTS.USER.GET_USER, config);
         setUserData(response.data);
       } catch (err) {
         console.error("Error fetching user data:", err);

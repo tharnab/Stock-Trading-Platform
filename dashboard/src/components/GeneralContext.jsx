@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import BuyActionWindow from "./BuyActionWindow";
 import SellActionWindow from "./SellActionWindow"; // Import SellActionWindow
+import { API_ENDPOINTS, FRONTEND_URL } from "../config/api";
 
 const GeneralContext = React.createContext({
   openBuyWindow: (uid) => {},
@@ -30,7 +31,7 @@ export const GeneralContextProvider = (props) => {
       const token = localStorage.getItem('authToken');
       
       if (token) {
-        const response = await axios.get("http://localhost:3002/check-auth", {
+        const response = await axios.get(API_ENDPOINTS.AUTH.CHECK_AUTH, {
           withCredentials: true,
           headers: {
             'Authorization': `Bearer ${token}`
@@ -38,7 +39,7 @@ export const GeneralContextProvider = (props) => {
         });
         setIsAuthenticated(response.data.authenticated);
       } else {
-        const response = await axios.get("http://localhost:3002/check-auth", {
+        const response = await axios.get(API_ENDPOINTS.AUTH.CHECK_AUTH, {
           withCredentials: true
         });
         setIsAuthenticated(response.data.authenticated);
@@ -55,7 +56,7 @@ export const GeneralContextProvider = (props) => {
   const handleOpenBuyWindow = (uid) => {
     if (!isAuthenticated) {
       const currentUrl = window.location.href;
-      window.location.href = `http://localhost:5173/signup?redirect=${encodeURIComponent(currentUrl)}`;
+      window.location.href = `${FRONTEND_URL}/signup?redirect=${encodeURIComponent(currentUrl)}`;
       return;
     }
     setIsBuyWindowOpen(true);
@@ -66,7 +67,7 @@ export const GeneralContextProvider = (props) => {
   const handleOpenSellWindow = (uid) => {
     if (!isAuthenticated) {
       const currentUrl = window.location.href;
-      window.location.href = `http://localhost:5173/signup?redirect=${encodeURIComponent(currentUrl)}`;
+      window.location.href = `${FRONTEND_URL}/signup?redirect=${encodeURIComponent(currentUrl)}`;
       return;
     }
     setIsSellWindowOpen(true);

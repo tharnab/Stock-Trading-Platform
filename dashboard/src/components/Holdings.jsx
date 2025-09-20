@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { VerticalGraph } from './VerticalGraph';
+import { API_ENDPOINTS, FRONTEND_URL } from "../config/api";
 
 
 const Holdings = () => {
@@ -8,7 +9,7 @@ const Holdings = () => {
   let[ allHoldings, setallHoldings ] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3002/allHoldings').then((res) => {
+    axios.get(API_ENDPOINTS.STOCKS.ALL_HOLDINGS).then((res) => {
       setallHoldings(res.data)
     })
   }, [])

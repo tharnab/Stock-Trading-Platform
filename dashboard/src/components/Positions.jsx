@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_ENDPOINTS } from '../config/api';
 
 const Positions = () => {
 
   let [ allPositions, setallPositions ] = useState([]);
 
   useEffect(()=> {
-    axios.get('http://localhost:3002/allPositions').then((res)=> {
+    axios.get(API_ENDPOINTS.STOCKS.ALL_POSITIONS).then((res)=> {
       setallPositions(res.data);
   })
   }, [])

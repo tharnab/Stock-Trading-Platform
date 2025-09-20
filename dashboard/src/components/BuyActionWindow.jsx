@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
+import { API_ENDPOINTS, FRONTEND_URL } from "../config/api";
 
 const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
@@ -17,21 +18,21 @@ useEffect(() => {
   // Double-check authentication when component mounts
   if (!isAuthenticated) {
     const currentUrl = window.location.href;
-    window.location.href = `http://localhost:5173/signup?redirect=${encodeURIComponent(currentUrl)}`;
+    window.location.href = `${FRONTEND_URL}/signup?redirect=${encodeURIComponent(currentUrl)}`;
   }
 }, [isAuthenticated]);
 
 const handleBuyClick = async () => {
   if (!isAuthenticated) {
     const currentUrl = window.location.href;
-    window.location.href = `http://localhost:5173/signup?redirect=${encodeURIComponent(currentUrl)}`;
+    window.location.href = `${FRONTEND_URL}/signup?redirect=${encodeURIComponent(currentUrl)}`;
     return;
   }
 
   try {
     setError("");
     const response = await axios.post(
-      "http://localhost:3002/newOrder",
+      API_ENDPOINTS.TRADING.NEW_ORDER,
       {
         name: uid,
         qty: stockQuantity,
@@ -49,7 +50,7 @@ const handleBuyClick = async () => {
     if (err.response && err.response.status === 401) {
       setAuthentication(false);
       const currentUrl = window.location.href;
-      window.location.href = `http://localhost:5173/signup?redirect=${encodeURIComponent(currentUrl)}`;
+      window.location.href = `${FRONTEND_URL}/signup?redirect=${encodeURIComponent(currentUrl)}`;
     } else {
       setError(err.response?.data?.message || "An error occurred");
       console.error(err);
