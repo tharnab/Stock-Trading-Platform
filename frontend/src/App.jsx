@@ -13,7 +13,7 @@ import Footer from "./landing_page/Footer";
 import NotFound from "./landing_page/NotFound"
 import ToBeBuild from "./landing_page/ToBeBuild";
 import ScrollToTop from "./landing_page/ScrollToTop";
-import SignUpPage from "./landing_page/signup/SignUpPage";
+import SignUpPage from "./landing_page/signup/SignupPage";
 
 
 
