@@ -1,8 +1,8 @@
-// src/components/Signup.jsx (or wherever your signup component is)
 import "../styles/Signup.css";
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { API_ENDPOINTS, DASHBOARD_URL } from "../../config/api";
 
 
 function Signup() {
@@ -17,7 +17,7 @@ function Signup() {
   // Add this function to your Signup component
   const getTokenForDashboard = async () => {
     try {
-      const response = await axios.post('http://localhost:3002/token', {}, {
+      const response = await axios.post(API_ENDPOINTS.AUTH.TOKEN, {}, {
         withCredentials: true
       });
       
@@ -25,7 +25,7 @@ function Signup() {
       localStorage.setItem('authToken', response.data.token);
       
       // Redirect to dashboard
-      window.location.href = "http://localhost:3000/dashboard";
+      window.location.href = DASHBOARD_URL;
     } catch (err) {
       console.error('Failed to get token for dashboard:', err);
       setError('Failed to authenticate with dashboard');
@@ -37,7 +37,7 @@ function Signup() {
     setError("");
 
     try {
-      const res = await axios.post('http://localhost:3002/signup', formData, {
+      const res = await axios.post(API_ENDPOINTS.AUTH.SIGNUP, formData, {
         withCredentials: true, //allow cookie storage
       })
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_ENDPOINTS, DASHBOARD_URL } from "./config/api";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -51,7 +52,7 @@ function Login() {
     setIsLoading(true);
     
     try {
-      const response = await axios.post("http://localhost:3002/login", formData, {
+      const response = await axios.post(API_ENDPOINTS.AUTH.LOGIN, formData, {
         withCredentials: true
       });
       
@@ -59,7 +60,7 @@ function Login() {
       localStorage.setItem('authToken', 'cookie-auth');
       
       // Redirect to http://localhost:3000/ (dashboard)
-      window.location.href = "http://localhost:3000/";
+      window.location.href = DASHBOARD_URL;
       
     } catch (err) {
       if (err.response?.status === 400) {
