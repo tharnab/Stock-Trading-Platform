@@ -26,6 +26,8 @@ app.use(bodyParser.json());
 const allowedOrigins = [
   "http://localhost:5173", // frontend
   "http://localhost:3000", // dashboard (or whatever port it runs on)
+  'https://stock-platform-blush.vercel.app',
+  'https://stock-trading-platform-five.vercel.app',
 ];
 
 app.use(cors({
