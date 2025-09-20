@@ -25,14 +25,17 @@ app.use(bodyParser.json());
 
 const allowedOrigins = [
   "http://localhost:5173", // frontend
-  "http://localhost:3000", // dashboard (or whatever port it runs on)
-  'https://stock-platform-blush.vercel.app',
-  'https://stock-trading-platform-five.vercel.app',
+  "http://localhost:3000",
+  "https://stock-platform-blush.vercel.app",
+  "https://stock-trading-platform-five.vercel.app",
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow requests with no origin (like mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -84,7 +87,7 @@ app.get("/myOrders", middleware, async (req, res) => {
   }
 });
 
-// NEW: Get user data endpoint
+// Get user data endpoint
 app.get("/user", middleware, async (req, res) => {
   try {
     const user = await UserModel.findById(req.userId);
@@ -130,11 +133,12 @@ app.post('/signup', async (req, res) => {
     // Create token
     const token = jwt.sign({ id: newUser._id }, SECRET, { expiresIn: '24h' });
 
-    // Set cookie with proper settings for cross-origin
+    // Set cookie with production settings
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false, // set to true in production with HTTPS
-      sameSite: 'lax', // or 'none' if using HTTPS
+      secure: true,
+      sameSite: 'none',
+      domain: '.vercel.app',
       maxAge: 24 * 60 * 60 * 1000
     });
 
@@ -150,7 +154,7 @@ app.post('/login', async (req, res) => {
 
     const user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "User not found" }); // Fixed: res.status instead of express.status
+      return res.status(400).json({ message: "User not found" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -163,8 +167,9 @@ app.post('/login', async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
+      domain: '.vercel.app',
       maxAge: 24 * 60 * 60 * 1000
     });
 
@@ -175,12 +180,14 @@ app.post('/login', async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
+  // Clear cookie for production
   res.clearCookie("token", {
     httpOnly: true,
-    secure: false,
-    sameSite: 'lax',
-    domain: 'localhost'
+    secure: true,
+    sameSite: 'none',
+    domain: '.vercel.app'
   });
+  
   res.json({ message: "Logged out successfully" });
 });
 
