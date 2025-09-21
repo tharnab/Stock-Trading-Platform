@@ -26,32 +26,45 @@ export const GeneralContextProvider = (props) => {
     checkAuthentication();
   }, []);
 
-  const checkAuthentication = async () => {
-    try {
-      const token = localStorage.getItem('authToken');
+  // const checkAuthentication = async () => {
+  //   try {
+  //     const token = localStorage.getItem('authToken');
       
-      if (token) {
-        const response = await axios.get(API_ENDPOINTS.AUTH.CHECK_AUTH, {
-          withCredentials: true,
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        setIsAuthenticated(response.data.authenticated);
-      } else {
-        const response = await axios.get(API_ENDPOINTS.AUTH.CHECK_AUTH, {
-          withCredentials: true
-        });
-        setIsAuthenticated(response.data.authenticated);
+  //     if (token) {
+  //       const response = await axios.get(API_ENDPOINTS.AUTH.CHECK_AUTH, {
+  //         withCredentials: true,
+  //         headers: {
+  //           'Authorization': `Bearer ${token}`
+  //         }
+  //       });
+  //       setIsAuthenticated(response.data.authenticated);
+  //     } else {
+  //       const response = await axios.get(API_ENDPOINTS.AUTH.CHECK_AUTH, {
+  //         withCredentials: true
+  //       });
+  //       setIsAuthenticated(response.data.authenticated);
         
-        if (response.data.authenticated) {
-          localStorage.setItem('authToken', 'cookie-auth');
-        }
-      }
-    } catch (err) {
-      setIsAuthenticated(false);
-    }
-  };
+  //       if (response.data.authenticated) {
+  //         localStorage.setItem('authToken', 'cookie-auth');
+  //       }
+  //     }
+  //   } catch (err) {
+  //     setIsAuthenticated(false);
+  //   }
+  // };
+
+  const checkAuthentication = async () => {
+  try {
+    const response = await axios.get(API_ENDPOINTS.AUTH.CHECK_AUTH, {
+      withCredentials: true // ✅ Rely on cookies only
+    });
+    
+    setIsAuthenticated(response.data.authenticated);
+    
+  } catch (err) {
+    setIsAuthenticated(false);
+  }
+};
 
   const handleOpenBuyWindow = (uid) => {
     if (!isAuthenticated) {

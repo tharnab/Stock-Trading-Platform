@@ -57,7 +57,7 @@ function Login() {
       });
       
       // Store authentication token
-      localStorage.setItem('authToken', 'cookie-auth');
+      // localStorage.setItem('authToken', 'cookie-auth');
       
       // Redirect to http://localhost:3000/ (dashboard)
       window.location.href = DASHBOARD_URL;
