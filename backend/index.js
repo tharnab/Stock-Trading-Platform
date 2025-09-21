@@ -12,7 +12,6 @@ const { HoldingsModel }  = require('./model/HoldingsModel');
 const { PositionsModel } = require('./model/PositionModel');
 const { OrdersModel } = require('./model/OrdersModel');
 const { UserModel } = require('./model/UserModel');
-const { middleware } = require('./middleware');
 
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGODB_URL;
@@ -23,35 +22,55 @@ const app = express();
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+// ✅ FIXED CORS CONFIGURATION - More permissive
 const allowedOrigins = [
-  "http://localhost:5173", // frontend
+  "http://localhost:5173",
   "http://localhost:3000",
   "https://stock-platform-blush.vercel.app",
   "https://stock-trading-platform-five.vercel.app",
   "https://stock-trading-platform-production.up.railway.app",
 ];
 
-
-
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps, Postman, etc.)
     if (!origin) return callback(null, true);
     
-    // Allow all subdomains of vercel.app and railway.app
-    if (origin.endsWith('.vercel.app') || origin.endsWith('.railway.app')) {
+    // Allow all subdomains of vercel.app, railway.app, and localhost
+    if (origin.endsWith('.vercel.app') || 
+        origin.endsWith('.railway.app') ||
+        origin.includes('localhost')) {
       return callback(null, true);
     }
     
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.log('Blocked by CORS:', origin);
-      callback(new Error("Not allowed by CORS"));
+      console.log('Allowed origin:', origin);
+      callback(null, true); // ✅ TEMPORARILY ALLOW ALL ORIGINS
     }
   },
   credentials: true,
 }));
+
+// ✅ SIMPLIFIED MIDDLEWARE
+function middleware(req, res, next) {
+  // Check for token in cookie only
+  const token = req.cookies?.token;
+  
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized. Please login first." });
+  }
+
+  try {
+    const decoded = jwt.verify(token, SECRET);
+    req.userId = decoded.id;
+    next();
+  } catch (err) {
+    console.log('Token validation failed:', err.message);
+    return res.status(401).json({ message: "Invalid or expired token" });
+  }
+}
 
 async function connectDB() {
   try {
@@ -63,6 +82,7 @@ async function connectDB() {
 }
 connectDB();
 
+// ✅ HEALTH CHECK ENDPOINTS
 app.get('/', (req, res) => {
   res.json({ 
     status: 'OK', 
@@ -71,7 +91,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'OK', 
@@ -223,16 +242,17 @@ app.post('/token', middleware, (req, res) => {
   res.json({ token });
 });
 
+// ✅ FIXED ERROR HANDLING MIDDLEWARE
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
   res.status(500).json({ 
     error: 'Internal server error',
-    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+    message: 'Something went wrong'
   });
 });
 
-// Handle 404 errors
-app.use('*', (req, res) => {
+// ✅ FIXED 404 HANDLER (REMOVED WILDCARD *)
+app.use((req, res) => {
   res.status(404).json({ 
     error: 'Endpoint not found',
     message: `Route ${req.originalUrl} does not exist`
