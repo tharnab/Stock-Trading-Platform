@@ -31,19 +31,7 @@ const allowedOrigins = [
   "https://stock-trading-platform-production.up.railway.app",
 ];
 
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     // Allow requests with no origin (like mobile apps, Postman, etc.)
-//     if (!origin) return callback(null, true);
-    
-//     if (allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true,
-// }));
+
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -74,6 +62,23 @@ async function connectDB() {
   }
 }
 connectDB();
+
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'Server is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'Server is healthy',
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Routes
 app.get('/allHoldings', async (req, res) => {
@@ -216,6 +221,22 @@ app.post('/token', middleware, (req, res) => {
   // Create a new token for API use
   const token = jwt.sign({ id: req.userId }, SECRET, { expiresIn: '24h' });
   res.json({ token });
+});
+
+app.use((err, req, res, next) => {
+  console.error('Error:', err.message);
+  res.status(500).json({ 
+    error: 'Internal server error',
+    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+  });
+});
+
+// Handle 404 errors
+app.use('*', (req, res) => {
+  res.status(404).json({ 
+    error: 'Endpoint not found',
+    message: `Route ${req.originalUrl} does not exist`
+  });
 });
 
 app.listen(PORT, () => {
