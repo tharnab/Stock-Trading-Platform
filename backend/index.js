@@ -28,16 +28,37 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://stock-platform-blush.vercel.app",
   "https://stock-trading-platform-five.vercel.app",
+  "https://stock-trading-platform-production.up.railway.app",
 ];
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     // Allow requests with no origin (like mobile apps, Postman, etc.)
+//     if (!origin) return callback(null, true);
+    
+//     if (allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true,
+// }));
 
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps, Postman, etc.)
     if (!origin) return callback(null, true);
     
+    // Allow all subdomains of vercel.app and railway.app
+    if (origin.endsWith('.vercel.app') || origin.endsWith('.railway.app')) {
+      return callback(null, true);
+    }
+    
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log('Blocked by CORS:', origin);
       callback(new Error("Not allowed by CORS"));
     }
   },

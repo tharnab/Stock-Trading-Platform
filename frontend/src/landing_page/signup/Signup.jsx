@@ -1,72 +1,36 @@
-// import "../styles/Signup.css";
-// import { useState } from 'react';
-// import axios from 'axios';
-// import { useNavigate, Link } from 'react-router-dom';
-// import { API_ENDPOINTS, DASHBOARD_URL } from "../../config/api";
-
-
-// function Signup() {
-//   const [formData, setFormData ] = useState({ name: "", email: "", password: ""});
-//   const [ error, setError ] = useState("");
-//   const navigate = useNavigate();
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.id]: e.target.value });
-//   }
-
-//   // Add this function to your Signup component
-//   // const getTokenForDashboard = async () => {
-//   //   try {
-//   //     const response = await axios.post(API_ENDPOINTS.AUTH.TOKEN, {}, {
-//   //       withCredentials: true
-//   //     });
-      
-//   //     // Store this token for the dashboard to use
-//   //     localStorage.setItem('authToken', response.data.token);
-      
-//   //     // Redirect to dashboard
-//   //     window.location.href = DASHBOARD_URL;
-//   //   } catch (err) {
-//   //     console.error('Failed to get token for dashboard:', err);
-//   //     setError('Failed to authenticate with dashboard');
-//   //   }
-//   // };
-// if(res.status === 201 ) {
-//   window.location.href = DASHBOARD_URL;
-// }
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setError("");
-
-//     try {
-//       const res = await axios.post(API_ENDPOINTS.AUTH.SIGNUP, formData, {
-//         withCredentials: true, //allow cookie storage
-//       })
-
-//       if(res.status === 201 ) {
-//         // Call the function to get token and redirect to dashboard
-//         await getTokenForDashboard();
-//       }
-
-//     } catch (err) {
-//       setError(err.response?.data?.message || "Signup failed");
-//     }
-//   }
-
 import "../styles/Signup.css";
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { API_ENDPOINTS, DASHBOARD_URL } from "../../config/api";
 
+
 function Signup() {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
-  const [error, setError] = useState("");
+  const [formData, setFormData ] = useState({ name: "", email: "", password: ""});
+  const [ error, setError ] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   }
+
+  // Add this function to your Signup component
+  const getTokenForDashboard = async () => {
+    try {
+      const response = await axios.post(API_ENDPOINTS.AUTH.TOKEN, {}, {
+        withCredentials: true
+      });
+      
+      // Store this token for the dashboard to use
+      localStorage.setItem('authToken', response.data.token);
+      
+      // Redirect to dashboard
+      window.location.href = DASHBOARD_URL;
+    } catch (err) {
+      console.error('Failed to get token for dashboard:', err);
+      setError('Failed to authenticate with dashboard');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,12 +38,12 @@ function Signup() {
 
     try {
       const res = await axios.post(API_ENDPOINTS.AUTH.SIGNUP, formData, {
-        withCredentials: true,
-      });
+        withCredentials: true, //allow cookie storage
+      })
 
-      if (res.status === 201) {
-        // ✅ FIXED: Direct redirect without token exchange
-        window.location.href = DASHBOARD_URL;
+      if(res.status === 201 ) {
+        // Call the function to get token and redirect to dashboard
+        await getTokenForDashboard();
       }
 
     } catch (err) {
